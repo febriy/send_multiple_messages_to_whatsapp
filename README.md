@@ -25,6 +25,7 @@ Then, extract chromedriver and place it at the main directory (where wa_send.py 
 - Afterwards, you will be prompted if you want to send the messages or not. Type either 'yes' or 'no'. 
 
 ### Use pyinstaller to create an executable 
+- Install pyinstaller `pip install https://github.com/pyinstaller/pyinstaller/archive/develop.zip`
 - Run this command `pyinstaller --onefile -w gui.py`
 - Move the chromedriver.exe and send_list.csv to the dist folder
 - Run gui.exe
