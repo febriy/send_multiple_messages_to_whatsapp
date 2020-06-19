@@ -1,5 +1,8 @@
-# notebooks 
+# un-needed folders 
 notebooks/
+build/
+dist/
+
 
 # chromedriver for windows
 chromedriver.exe
