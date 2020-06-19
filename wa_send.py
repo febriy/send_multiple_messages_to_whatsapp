@@ -38,6 +38,7 @@ def send_to_wa(send_list,driver, wait):
         print("send to:", target)
 
         x_arg = '//span[contains(@title,' +'"' +target+ '"' +')]' #.decode('utf-8') 
+        print (x_arg)
         group_title = wait.until(EC.presence_of_element_located((
             By.XPATH, x_arg)))
         group_title.click()
@@ -64,7 +65,7 @@ def send_to_wa(send_list,driver, wait):
         time.sleep(1)
 
 
-def choose_to_send(user_answer, send_list,driver, wait):
+def choose_to_send(user_answer, send_list):
     if user_answer == "yes":
         send_to_wa(send_list,driver, wait)
         driver.close()
@@ -77,12 +78,11 @@ def choose_to_send(user_answer, send_list,driver, wait):
 
 #print(targets)
 def activate_wa(chromedriver_dir = "./chromedriver"): 
+    global driver, wait, wait5
     driver = webdriver.Chrome(chromedriver_dir)
     driver.get("https://web.whatsapp.com/")
     wait = WebDriverWait(driver, 600)
     wait5 = WebDriverWait(driver, 5)
-    #targets =['Mona 1','School']
-    return driver, wait, wait5
 
 
 def choose_list(send_list_dir = "./send_list.csv"):
@@ -91,11 +91,11 @@ def choose_list(send_list_dir = "./send_list.csv"):
     
 
 if __name__ == "__main__":
-    driver, wait, wait5 = activate_wa()
-    send_list = choose_list()
+    activate_wa()
+    send_list = choose_list('send_list_2.csv')
     test_msg(send_list)
     user_answer = input("send message? input yes or no: ").lower().strip()
-    choose_to_send(user_answer, send_list,driver, wait)
+    choose_to_send(user_answer, send_list)
     
     
 

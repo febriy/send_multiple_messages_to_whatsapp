@@ -38,3 +38,13 @@ Then, extract chromedriver and place it at the main directory (where wa_send.py 
     - click "yes/no"
 - You can now send the dist folder with everything inside it to someone else who might need it.
 
+### Sending using number instead
+- If you want to send to specific number instead of person name/ group: `python send_to_number.py`
+- Note that currently, the code is set up to send to Singapore number. 
+- If you want to change that, modify the following line: `driver.get("https://web.whatsapp.com/send?phone=65{}&source=&data=#".format(phone_no))`
+    - change the number 65 to your country's code or remove the number completely. 
+
+### References
+- https://lesmartomation.com/send-whatsapp-messages-with-automated-script-using-selenium/
+- https://pyinstaller.readthedocs.io/en/stable/operating-mode.html
+- https://www.youtube.com/watch?v=YXPyB4XeYLA

@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
-from wa_send import activate_wa, choose_list ,test_msg,send_to_wa, choose_to_send
+from wa_send import activate_wa, choose_list ,test_msg, choose_to_send
 
 
 root = Tk()
@@ -12,8 +12,7 @@ def get_chromedir():
     myLabel.grid(row = 3,column = 0)
     
 def run_chrome():
-    global driver, wait, wait5
-    driver, wait, wait5 = activate_wa(chromedir)
+    activate_wa(chromedir)
 
 def get_sendlistdir():
     global send_list
@@ -45,7 +44,7 @@ def get_send_status():
     send_status =  send_status_entry.get()
     myLabel = Label(root, text =send_status)
     myLabel.grid(row = 3,column = 0)
-    choose_to_send(send_status, send_list,driver, wait)
+    choose_to_send(send_status, send_list)
 
 chromedir_label = Label(root, text="specify chromedriver directory")
 chromedir_entry = Entry(root)
