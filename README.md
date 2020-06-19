@@ -29,5 +29,12 @@ Then, extract chromedriver and place it at the main directory (where wa_send.py 
 - Run this command `pyinstaller --onefile -w gui.py`
 - Move the chromedriver.exe and send_list.csv to the dist folder
 - Run gui.exe
+    - click "set-(chromedriver directory)"
+    - click "start chrome"
+    - start the whatsapp web with your phone
+    - click "set-(send_list directory)"
+    - click "test message" - you will see the message samples on the app
+    - type "yes"
+    - click "yes/no"
 - You can now send the dist folder with everything inside it to someone else who might need it
 
