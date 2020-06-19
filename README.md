@@ -11,6 +11,9 @@ Download [chromedriver](https://chromedriver.storage.googleapis.com/index.html).
 Then, extract chromedriver and place it at the main directory (where wa_send.py is located).
 
 # Usage
+### Prepare your contact list
+- Make sure that you save the contacts you want to save to in your phone (and that it came up at the top when you search for it - beware of duplicate/ similar names).
+
 ### Prepare your csv
 - Open send_list.csv and modify the column values. DO NOT CHANGE THE COLUMN HEADER NAMES!
 - For the common message, you just have to input them once in the first row (see the csv).
