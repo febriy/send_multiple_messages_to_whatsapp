@@ -14,17 +14,6 @@ import datetime
 import time
 import pandas as pd
 
-driver = webdriver.Chrome('./chromedriver')
-
-#print(targets)
-
-driver.get("https://web.whatsapp.com/")
-wait = WebDriverWait(driver, 600)
-wait5 = WebDriverWait(driver, 5)
-#targets =['Mona 1','School']
-
-send_list = pd.read_csv("send_list.csv")
-
 def test_msg(send_list):
     print("Displaying messages to send......")
 
@@ -43,7 +32,7 @@ def test_msg(send_list):
                 +send_list.loc[0,"4_end"])
         print("msg:", msg)
 
-def send_to_wa(send_list):
+def send_to_wa(send_list,driver, wait):
     for n, row in send_list.iterrows():
         target = send_list.loc[n,"to"]
         print("send to:", target)
@@ -74,17 +63,39 @@ def send_to_wa(send_list):
         sendbutton.click()
         time.sleep(1)
 
-if __name__ == "__main__":
-    test_msg(send_list)
 
-    user_answer = input("send message? input yes or no: ").lower().strip()
+def choose_to_send(user_answer, send_list,driver, wait):
     if user_answer == "yes":
-        send_to_wa(send_list)
+        send_to_wa(send_list,driver, wait)
         driver.close()
     elif user_answer == "no":
         driver.close()
     else:
         print("Error: Answer must be 'yes' or 'no'")
+        
+
+
+#print(targets)
+def activate_wa(chromedriver_dir = "./chromedriver"): 
+    driver = webdriver.Chrome(chromedriver_dir)
+    driver.get("https://web.whatsapp.com/")
+    wait = WebDriverWait(driver, 600)
+    wait5 = WebDriverWait(driver, 5)
+    #targets =['Mona 1','School']
+    return driver, wait, wait5
+
+
+def choose_list(send_list_dir = "./send_list.csv"):
+    send_list = pd.read_csv(send_list_dir)
+    return send_list
+    
+
+if __name__ == "__main__":
+    driver, wait, wait5 = activate_wa()
+    send_list = choose_list()
+    test_msg(send_list)
+    user_answer = input("send message? input yes or no: ").lower().strip()
+    choose_to_send(user_answer, send_list,driver, wait)
     
     
 
