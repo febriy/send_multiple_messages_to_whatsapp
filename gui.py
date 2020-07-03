@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
-from wa_send import activate_wa, choose_list ,test_msg, choose_to_send
+from send_to_number import activate_wa, choose_list ,test_msg, choose_to_send
 
 
 root = Tk()
@@ -23,21 +23,20 @@ def get_sendlistdir():
 
 def print_in_app():
     #test_msg(send_list)
-    for n, row in send_list.iterrows():
-        target_label = Label(root, text = send_list.loc[n,"to"])
-
-        msg = (send_list.loc[0,"0_1"]
-                +send_list.loc[n,"field_1"] 
-                +send_list.loc[0,"1_2"] 
-                +send_list.loc[n,"field_2"] 
-                +send_list.loc[0,"2_3"]
-                +send_list.loc[n,"date"] 
-                +send_list.loc[0,"3_4"]
-                +send_list.loc[n,"time"] 
-                +send_list.loc[0,"4_end"])
-        msg_label = Label(root, text = msg)
-        target_label.grid(row = n+4,column = 0)
-        msg_label.grid(row = n+4,column = 1)
+    msg = (send_list.loc[0,"0_1"]
+            +send_list.loc[0,"field_1"] 
+            +send_list.loc[0,"1_2"] 
+            +send_list.loc[0,"field_2"] 
+            +send_list.loc[0,"2_3"]
+            +send_list.loc[0,"date"] 
+            +send_list.loc[0,"3_4"]
+            +send_list.loc[0,"time"] 
+            +send_list.loc[0,"4_end"])
+    msg = msg.replace ("\\n", "\n")
+   
+    msg_label = Label(root, text = msg)
+    #target_label.grid(row = n+4,column = 0)
+    msg_label.grid(row = 4,column = 1)
 
 
 def get_send_status():
