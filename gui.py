@@ -1,9 +1,9 @@
-from parse_text import create_message
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
-from send_to_number import activate_wa, choose_list ,test_msg, choose_to_send
+from send_to_number import activate_wa, choose_list ,test_msg, send_whatsapp_msg, create_message
 import pandas as pd
+from time import sleep
 
 root = Tk()
 
@@ -57,12 +57,6 @@ sendlistdir_label = Label(root, text="specify send_list directory")
 sendlistdir_entry = Entry(root)
 sendlistdir_entry.insert(0,"./send_list.csv")
 sendlistdir_button = Button(root, text="set", command=get_sendlistdir)
-test_msg_button = Button(root, text="Test message", command=print_in_app)
-
-
-label = Label(root, text="Send messages? type 'yes' or 'no'")
-send_status_entry = Entry(root)
-send_status_button = Button(root, text="yes/no", command=get_send_status)
 
 def get_template():
     template=textExample.get("1.0","end")
@@ -73,13 +67,16 @@ def get_template():
     input_list = list(input_tuples)
 
     for i,j in enumerate (input_list):
-        message = create_message(template, *input_list[i])
+        mobile_no = input_spreadsheet.loc[i,"to"]
+        message_text = create_message(template, *input_list[i])
+        print (mobile_no, message_text)
+        send_whatsapp_msg(mobile_no, message_text)
 
 
 textExample=tk.Text(root, height=10)
 
 
-btnRead=tk.Button(root, height=1, width=10, text="Read", 
+btnRead=tk.Button(root, height=1, width=10, text="Read and send", 
                     command=get_template)
 
 
@@ -92,11 +89,6 @@ run_chrome_button.grid(row = 0,column = 3)
 sendlistdir_label.grid(row = 1,column = 0)
 sendlistdir_entry.grid(row = 1,column = 1)
 sendlistdir_button.grid(row = 1,column = 2)
-test_msg_button.grid(row = 1,column = 3)
-
-label.grid(row = 2,column = 0)
-send_status_entry.grid(row = 2,column = 1)
-send_status_button.grid(row = 2,column = 2)
 
 textExample.grid(row = 3,column = 1)
 btnRead.grid(row = 4,column = 1)
