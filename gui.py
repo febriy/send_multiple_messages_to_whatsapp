@@ -1,7 +1,9 @@
+from parse_text import create_message
+import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
 from send_to_number import activate_wa, choose_list ,test_msg, choose_to_send
-
+import pandas as pd
 
 root = Tk()
 
@@ -36,13 +38,13 @@ def print_in_app():
    
     msg_label = Label(root, text = msg)
     #target_label.grid(row = n+4,column = 0)
-    msg_label.grid(row = 4,column = 1)
+    msg_label.grid(row = 5,column = 1)
 
 
 def get_send_status():
     send_status =  send_status_entry.get()
     myLabel = Label(root, text =send_status)
-    myLabel.grid(row = 3,column = 0)
+    myLabel.grid(row = 5,column = 0)
     choose_to_send(send_status, send_list)
 
 chromedir_label = Label(root, text="specify chromedriver directory")
@@ -62,6 +64,25 @@ label = Label(root, text="Send messages? type 'yes' or 'no'")
 send_status_entry = Entry(root)
 send_status_button = Button(root, text="yes/no", command=get_send_status)
 
+def get_template():
+    template=textExample.get("1.0","end")
+    print(template)
+
+    input_spreadsheet = pd.read_csv("./send_list_1.csv", encoding ="cp1252")
+    input_tuples = input_spreadsheet.to_records(index=False)
+    input_list = list(input_tuples)
+
+    for i,j in enumerate (input_list):
+        message = create_message(template, *input_list[i])
+
+
+textExample=tk.Text(root, height=10)
+
+
+btnRead=tk.Button(root, height=1, width=10, text="Read", 
+                    command=get_template)
+
+
 chromedir_label.grid(row = 0,column = 0)
 chromedir_entry.grid(row = 0,column = 1)
 chromedir_button.grid(row = 0,column = 2)
@@ -76,6 +97,9 @@ test_msg_button.grid(row = 1,column = 3)
 label.grid(row = 2,column = 0)
 send_status_entry.grid(row = 2,column = 1)
 send_status_button.grid(row = 2,column = 2)
+
+textExample.grid(row = 3,column = 1)
+btnRead.grid(row = 4,column = 1)
 
 # run the event loop
 root.mainloop()
