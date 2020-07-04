@@ -1,6 +1,8 @@
 # Send Multiple Personalised Messages to WhatsApp
 Send multiple messages to WhatsApp using Python and Selenium.
 
+![](./sample_message.PNG)
+
 # Installation
 Clone the repository `git clone <https/ssh link>`
 
@@ -25,8 +27,6 @@ Then, extract chromedriver and place it at the main directory (where wa_send.py 
 - Select chromedriver and data spreadsheet. Start Chrome. 
 - Check your messages by clicking `Test`.
 - Send your messages by clicking `Send`.
-
-![](./sample_message.PNG)
 
 ### Use pyinstaller to create an executable 
 - Install pyinstaller `pip install https://github.com/pyinstaller/pyinstaller/archive/develop.zip`
