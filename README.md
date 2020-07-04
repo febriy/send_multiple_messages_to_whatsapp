@@ -26,7 +26,7 @@ Then, extract chromedriver and place it at the main directory (where wa_send.py 
 - Check your messages by clicking `Test`.
 - Send your messages by clicking `Send`.
 
-![](./sample_message.png)
+![](./sample_message.PNG)
 
 ### Use pyinstaller to create an executable 
 - Install pyinstaller `pip install https://github.com/pyinstaller/pyinstaller/archive/develop.zip`
