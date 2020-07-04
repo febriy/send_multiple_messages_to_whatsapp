@@ -24,12 +24,10 @@ def is_connected():
         is_connected()
 
 def choose_list(send_list_dir = "./send_list.csv"):
-    send_list = pd.read_csv(send_list_dir, encoding ="cp1252")
-    return send_list
-
-def test_msg(send_list):
-    pass
-
+    input_spreadsheet = pd.read_csv(send_list_dir, encoding ="cp1252")
+    input_tuples = input_spreadsheet.to_records(index=False)
+    input_list = list(input_tuples)
+    return input_spreadsheet, input_list
 
 def send_whatsapp_msg(phone_no,text):
     driver.get("https://web.whatsapp.com/send?phone=65{}&source=&data=#".format(phone_no))
