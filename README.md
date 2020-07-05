@@ -3,6 +3,11 @@ Send multiple messages to WhatsApp using Python and Selenium.
 
 ![](./sample_message.PNG)
 
+# Use Cases
+- Community managers communicating with partners and volunteers.
+- Workshop facilitators reminding participants to do a certain task.
+- A student doing a survey among his friends.
+
 # Installation
 Clone the repository `git clone <https/ssh link>`
 
